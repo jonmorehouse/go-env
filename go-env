@@ -1,0 +1,32 @@
+#!/usr/local/bin/bash
+
+BASE_DIR=$(pwd)
+
+# available commands for application
+declare -A commands=(
+	
+	["install"]="install command"
+	["help"]="help command"
+	["freeze"]="freeze command"
+)
+
+# grab the program that is being called and then parse it as necessary to deliver the correct functionality
+if [[ $# -eq 0 || ! ${commands["$1"]-X} == ${commands["$1"]} ]]
+then
+
+	help
+
+else
+
+	echo "TEST"
+
+fi
+
+
+
+
+
+
+
+
+
