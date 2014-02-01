@@ -1,32 +1,51 @@
 #!/usr/local/bin/bash
 
-BASE_DIR=$(pwd)
+# make the script callable from anywhere by resolving symlinks to discover real directory
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
 
-# available commands for application
+	DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+	SOURCE="$(readlink "$SOURCE")"
+	[[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+BASE_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+# map commands + help commands for menu
 declare -A commands=(
 	
-	["install"]="install command"
-	["help"]="help command"
-	["freeze"]="freeze command"
+	["destroy"]=
+	["install"]=
+	["freeze"]=
 )
+
+# now declare the source files that need to be loaded
+sources=(
+
+	"destroy.sh"
+	"install.sh" 
+	"freeze.sh"
+	"help.sh"
+)
+
+# now go through each source file and load it per necessary
+for source in "${sources[@]}"
+do
+
+	source $BASE_DIR/$source
+
+done
 
 # grab the program that is being called and then parse it as necessary to deliver the correct functionality
 if [[ $# -eq 0 || ! ${commands["$1"]-X} == ${commands["$1"]} ]]
 then
 
-	help
+	# call the help command
+	help_command
 
-else
+else # we have a command that is legitimate
 
-	echo "TEST"
-
+	# call the command script as needed
+	$1
 fi
-
-
-
-
-
-
-
 
 

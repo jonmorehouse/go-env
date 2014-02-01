@@ -1,2 +1,2 @@
-map <Leader>rr :call CleanShell("./go-env freeze")<CR>
+map <Leader>rr :call CleanShell("./go-env help")<CR>
 
