@@ -5,6 +5,19 @@ Go Env
 * simple way of managing dependencies for a project and installing them locally
 * exports the current directory as the gopath
 
+Installation (Homebrew)
+-----------------------
+
+* `brew tap jonmorehouse/tap`
+* `brew update`
+* `brew install go-env`
+
+Installation (Manual)
+---------------------
+
+* `git clone github.com/jonmorehouse/go-env` 
+* add `pwd`/bin to $PATH
+
 Sample gofile
 -------------
 
