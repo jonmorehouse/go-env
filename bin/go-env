@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 # make the script callable from anywhere by resolving symlinks to discover real directory
 SOURCE="${BASH_SOURCE[0]}"
